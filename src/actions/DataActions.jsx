@@ -3,6 +3,7 @@ import {
   FETCH_VIDEO_ID,
   FETCH_DATA,
   FETCH_CHOICEAPI,
+  isAPIready,
 } from "../types";
 
 export const PushRequest = (item) => {
@@ -16,6 +17,13 @@ export const FetchData = (data) => {
   return {
     type: FETCH_DATA,
     payload: data,
+  };
+};
+
+export const IsAPIready = (status) => {
+  return {
+    type: isAPIready,
+    payload: status,
   };
 };
 

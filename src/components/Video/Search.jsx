@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { Button } from "../Buttons/button";
 import { BiSearch } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import { PushRequest, FetchChoiceAPI } from "../../actions/DataActions.jsx";
+import {
+  PushRequest,
+  FetchChoiceAPI,
+  IsAPIready,
+} from "../../actions/DataActions.jsx";
 import { GetData } from "../../api/api";
 import { SiYoutube, SiVimeo } from "react-icons/si";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import SwitchSelector from "react-switch-selector";
-import List from "./List";
 import SearchHistoryList from "./SearchHistoryList";
 
 const SearchBar = () => {
@@ -39,7 +42,7 @@ const SearchBar = () => {
   ];
 
   const handleRequest = (e) => {
-    e.preventDefault(0);
+    e.preventDefault();
     setRequest(e.target.value);
   };
 
@@ -51,6 +54,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(PushRequest(request));
+    dispatch(IsAPIready(false));
     dispatch(FetchChoiceAPI(CurrentAPI));
     dispatch(GetData({ request, CurrentAPI }));
   };
@@ -101,7 +105,6 @@ const SearchBar = () => {
             </SearchHistory>
           </Form>
         </FormContainer>
-        <List />
       </SearchContainer>
     </Wrapper>
   );
@@ -109,7 +112,7 @@ const SearchBar = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: auto;
   position: relative;
   background-color: black;
 `;

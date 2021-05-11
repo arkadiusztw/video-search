@@ -14,7 +14,7 @@ export const Item = (props) => {
     if (choiceAPI === "youtube") {
       return props.snippet?.thumbnails.high.url;
     } else {
-      return props.pictures.sizes[4].link;
+      return props.pictures?.sizes[4].link;
     }
   };
   const title = () => {
@@ -26,7 +26,7 @@ export const Item = (props) => {
   };
   const description = () => {
     if (choiceAPI === "youtube") {
-      return props.snippet?.description;
+      return props.snippet?.description.substring(0, 150);
     } else {
       return props.description?.substring(0, 150);
     }
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
   font-size: 1rem;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   @media (min-width: 950px) {
-    width: 21%;
+    width: 15%;
     margin: 0.2vw;
     max-width: 560px;
     min-height: 400px;
